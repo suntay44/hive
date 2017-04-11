@@ -1,0 +1,3 @@
+module HiveInformationsHelper
+
+end

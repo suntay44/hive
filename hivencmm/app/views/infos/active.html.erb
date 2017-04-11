@@ -1,0 +1,140 @@
+ <%= render 'shared/header' %>
+	
+   
+<p id="notice"><%= notice %></p>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover{background-color:#f5f5f5}
+
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+ 
+  text-align: center;
+}#page {
+  margin-left:auto;
+  margin-right:auto;
+  width:960px;
+}
+.button {
+                position:relative;
+                padding:6px 15px;
+                left:-8px;
+                border:2px solid #207cca;
+                background-color:#207cca;
+                color:#fafafa;
+				height: 35px;
+			
+}
+.button:hover  {
+                background-color:#fafafa;
+                color:#207cca;
+}
+
+
+</style><!DOCTYPE html>
+
+
+ 
+
+  <script>
+    function Check(frm){
+      var checkBoxes = frm.elements['active_ids[]'];
+      for (i = 0; i < checkBoxes.length; i++){
+        checkBoxes[i].checked = (selectControl.innerHTML == "Select All") ? 'checked' : '';
+      }
+      selectControl.innerHTML = (selectControl.innerHTML == "Select All") ? "Unselect All" : 'Select All';
+    }
+
+    window.onload = function(){
+      var selectControl = document.getElementById("selectall");
+      selectControl.onclick = function(){Check(document.check_all)};
+    };
+	
+	(function()
+	{
+	  if( window.localStorage )
+	  {
+	    if( !localStorage.getItem( 'firstLoad' ) )
+	    {
+	      localStorage[ 'firstLoad' ] = true;
+	      window.location.reload();
+	    }  
+	    else
+	      localStorage.removeItem( 'firstLoad' );
+	  }
+	})();
+  </script> 
+	 <div id="page">
+<center><h1>Active Reports</h1></center>
+ <%= form_tag checkinactive_infos_path, :name => "check_all", :method => :put do %>
+<%= submit_tag "Archived Informations", :class => "button"%> <br> <br> <br>
+ <table border=".5" class="table" >
+
+ 
+   <tbody>
+
+       <thead> 
+         <tr class="success">
+			 
+			 
+		 <b><th>   <label for="selectall" id="selectControl">Select All</label>
+       <input type="checkbox" id="selectall" /> </center></th>
+		   <th><%= sortable "title" %><%= arrow %> </th>
+		   <th><%= sortable "description" %><%= arrow %></th>
+		   <th><%= sortable "responsible" %><%= arrow %></th>
+           <th>Note</th>
+           <th>Solution</th>
+       <th>Category</th>
+      
+       <th colspan="2"><center></th>
+         
+		 
+		 </tr>
+       </thead>
+ 
+   
+  
+     <% @active_information.is_active.each do |active| %> 
+
+
+       <tr>	 <td><%= check_box_tag "active_ids[]", active.id , false, :class => 'checkbox'%></td>
+          <td><%=link_to truncate(active.title, :length => 40), active %></td>
+         <td><%= truncate(active.description, :length => 40) %></td>
+         <td><%= truncate(active.responsible, :length => 40) %></td>
+         <td><%=  truncate(active.note, :length => 40) %></td>
+         <td><%= truncate(active.solution, :length => 40) %></td>
+      <td><%= active.category_id %></td>
+  
+     
+      <td><%= link_to 'Edit', edit_info_path(active) %></td>
+      <td><%= link_to 'Archive', activated_info_path(active), method: :put , data: { confirm: 'Are you sure you want to archive?' } %></td>
+ 
+  
+         </tr>
+       <% end %>
+     <% end %>
+ 
+
+   </tbody>
+ </table>  
+<br><center>
+<%= will_paginate @active_information.is_active, renderer: BootstrapPagination::Rails, previous_label: "Previous", next_label: "Next", inner_window: 0, outer_window: 0 %>
+ 
+</center>
+</div>  

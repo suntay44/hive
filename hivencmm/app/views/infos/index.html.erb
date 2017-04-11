@@ -1,0 +1,255 @@
+ <%= render 'shared/header' %>
+	
+	  
+   
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#myDIV {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: white;
+    margin-top:20px;
+	margin-left:20px;
+}
+
+#myDIV2 {
+	display:none;
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: white;
+    margin-top:20px;
+	margin-left:20px;
+}
+#myDIV3 {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: white;
+    margin-top:20px;
+	margin-left:20px;
+}
+
+#myDIV4 {
+	display:none;
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: white;
+    margin-top:20px;
+	margin-left:20px;
+}
+#results {
+	 
+  
+    padding: 50px 0;
+    text-align: left;
+    background-color: white;
+	margin-top:-60px;
+	margin-left:80px;
+	margin-right:250px;
+}
+ 
+ 
+.search {
+                padding:8px 15px;
+                background:rgba(50, 50, 50, 0.2);
+                border:0px solid #dbdbdb;
+				height: 55px;
+				width: 150px;
+}
+.search2 {
+                padding:8px 15px;
+                background:rgba(50, 50, 50, 0.2);
+                border:0px solid #dbdbdb;
+				height: 55px;
+				width: 765px;
+}
+.button {
+                position:relative;
+                padding:6px 15px;
+                left:-8px;
+                border:2px solid #E7A316;
+                background-color:#E7A316;
+                color:#DDDCC6;
+				height: 55px;
+			
+}
+.button:hover  {
+                background-color:#fafafa;
+                color:#E7A316;
+}
+
+.button2 {
+                position:relative;
+                padding:6px 15px;
+                left:-8px;
+                border:2px solid #207cca;
+                background-color:#207cca;
+                color:#fafafa;
+				height: 35px;
+				
+}
+.button2:hover {
+                background-color:#fafafa;
+                color:#207cca;
+}
+
+.page {
+  margin-left:auto;
+  margin-right:auto;
+  width:960px;
+  
+}
+tr {
+	background-color:#f5f5f5
+	
+}
+ tr:hover{background-color:#f5f5f5}
+
+</style>
+</head>
+<body>
+
+ <div class="page">
+
+<div id="myDIV" align ="left">
+
+<center>
+
+<%= form_tag infos_path, :method => 'get' do %>
+
+<%= text_field_tag :search, nil, placeholder: ' Search...', :class => "search2"  %> <%= submit_tag "Snipe", :class => "button"%>
+
+
+
+<%end%> <br>
+<a onclick="myFunction()">ADVANCED SEARCH</a>
+
+</div>
+
+<div id="myDIV2" align ="left">
+
+<%= form_tag infos_path, :method => 'get' do %> 
+	
+
+		<%= text_field_tag :atitle, nil, placeholder: ' Title', :class =>"search" %>
+	
+	
+
+	<%= text_field_tag :adescription, nil, placeholder: ' Description', :class => "search"  %>
+	
+	
+		 
+	<%= text_field_tag :asolution , nil, placeholder: ' Solution', :class => "search" %>
+	
+	
+		 
+	<%= text_field_tag :aresponsible , nil, placeholder: ' Responsible', :class => "search" %>
+	
+	
+	 
+	<%= text_field_tag :anote, nil, placeholder: ' Note', :class => "search"  %>
+	
+	
+ 
+ 
+ 
+<%= submit_tag "Snipe", :class => "button"%>
+
+ <%end%><br>
+<a onclick="myFunction()">BASIC SEARCH</a>
+</div>
+  <div id="results">
+   <% if params[:atitle].present? or params[:adescription].present? or params[:aresponsible].present? or params[:asolution].present? or params[:anote].present?   %>
+        
+  	  <% if @hive_informationsz.blank?  %>
+  	     No Results 
+		 
+  	   <% else %>
+	  
+      <% @hive_informationsz.is_active.each do |hive_information| %> 
+ 
+ <h4> <%= link_to hive_information.title, hive_information , {style: "color: #3232ff"} %>  </h4> 
+		<font color="#228B22"> <%= hive_information.responsible %> </font><br>
+         <%= truncate(hive_information.description, :length => 260) %>
+         
+    
+    <br> <br>  
+      <% end %>
+  	<% end %>
+
+   </div>
+<center>
+   <% if params[:atitle].present? or params[:adescription].present? or params[:aresponsible].present? or params[:asolution].present? or params[:anote].present?      %>
+  	<%= will_paginate @hive_informationsz.is_active, renderer: BootstrapPagination::Rails, previous_label: "Previous", next_label: "Next", inner_window: 0, outer_window: 0 %>
+  	<%else%>
+	
+  	<%end%>
+
+</center>
+<div id="results">
+  	<%end%>
+
+ <table border=".5">
+
+ 
+   <tbody>
+ 	  <% if params[:search].present?    %>
+       
+ 	  <% if @hive_informations.blank?  %>
+ 	     No Results 
+		 
+ 	   <% else %>
+	  
+     <% @hive_informations.is_active.each do |hive_information| %> 
+
+ 
+ <h4> <%= link_to hive_information.title, hive_information , {style: "color: #3232ff"} %>  </h4> 
+		<font color="#228B22"> <%= hive_information.responsible %> </font><br>
+         <%= truncate(hive_information.description, :length => 260) %>
+         
+       
+       
+      
+    <br> <br>  
+	  
+     <% end %>
+	
+ 	<% end %>
+	
+ 	<% end %>
+
+   </tbody>
+ </table><br> </div> <center>
+  <% if params[:search].present?    %>
+ 	<%= will_paginate @hive_informations.is_active, renderer: BootstrapPagination::Rails, previous_label: "Previous", next_label: "Next", inner_window: 0, outer_window: 0 %>
+ 	<%else%>
+	
+ 	<%end%>
+</center> </div>
+<script>
+function myFunction() {
+	
+    var x = document.getElementById('myDIV');
+	var y = document.getElementById('myDIV2');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+		 y.style.display = 'none';
+    } else {
+        x.style.display = 'none';
+		 y.style.display = 'block';
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+ 

@@ -1,0 +1,23 @@
+ <%= render 'shared/header' %>
+	
+	  
+	<div id="page">  
+   
+<center><h1> 
+<br>Welcome back 
+   <%= current_user.person %>  </p> </h1>
+<p>
+ <table>
+	<% if current_user.is_admin %>
+<tr><td><%= link_to 'CREATE USER ACCOUNT', new_person_path %> </td><br></tr>
+<tr><td><%= link_to 'CREATE NEW INFORMATION', new_info_path %> </td><br></tr>
+<tr><td><%= link_to 'CREATE NEW CATEGORY', new_hive_category_path %></td> </p></tr>
+
+ 
+
+<tr> <td>
+Import a CSV File <br> <br>
+  <%= form_tag import_infos_path, multipart: true do %>
+    <%= file_field_tag :file %> <br>
+    <%= submit_tag "Import", :class => "button", :onclick => "alert('CSV FILE IMPORTED!')" %>
+   <% end %> </td></tr></table><%end%>

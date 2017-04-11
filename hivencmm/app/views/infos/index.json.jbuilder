@@ -1,0 +1,1 @@
+json.array! @hive_informations, partial: 'hive_informations/hive_information', as: :hive_information

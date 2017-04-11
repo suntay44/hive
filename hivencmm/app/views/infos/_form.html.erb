@@ -1,0 +1,65 @@
+  <%= render 'shared/header' %>
+
+<%= form_for hive_information do |f| %>
+   
+ 
+  
+  
+ <div class="container">
+ 	<div class="login-container2">
+             <div id="output"></div>
+             <div class="avatar2"></div>
+             <div>
+                 <form action="" method="">
+  
+ <div class="field">
+ 
+
+	  <table>
+		 <tr><th>
+			 Name
+		 </th>
+		 <th> Description
+			 
+		 </th> </tr>	<tr>		<td>
+ <%= f.text_area :title , :rows=>5, :cols=>40 %> </td>
+<td>
+ <%= f.text_area :description, :rows=>5, :cols=>40 %></td>
+	<tr>	 <th> Responsible
+		 </th>
+		 <th> Note </tr>
+		 </th><td>
+ <%= f.text_area :responsible, :rows=>3, :cols=>40  %></td>
+<td><%= f.text_area :note , :rows=>3, :cols=>40 %></td>
+ </tr>
+		 <th> Solution
+		 </th>
+<tr>
+
+<td><%= f.text_area :solution, :rows=>5, :cols=>40  %></td>
+ </tr>
+<th>
+Category:
+</th> <tr> <td>
+ <%= f.select :category_id, options_for_select(@categories)%> </p>
+ </td> </tr>
+   <%= f.hidden_field :is_active, :value => true%>
+ </div><th><tr><td>
+  <div class="actions">
+    <%= f.submit %>
+  </div></td> <tr><td>
+
+
+<%= link_to 'Back', infos_path %>
+</td></tr></tr> </th>
+</table>
+<% end %>
+                </form>
+            </div>
+        </div>
+        
+</div>	
+	</div>
+	<div> <br>
+			
+</div>

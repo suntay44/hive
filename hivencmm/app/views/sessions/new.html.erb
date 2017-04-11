@@ -1,0 +1,40 @@
+
+
+
+<div>
+	
+	
+	
+<% if flash[:alert] %>
+
+<p id ="notice"> <%= flash[:alert] %> </p>
+<% end %>
+<center>
+<%= form_tag :url => login_path do %>
+<fieldset>
+	
+	<div>
+<div class="container" >
+	<div class="login-container">
+            <div id="output"></div>
+            <div class="avatar"></div>
+            <div class="form-box" >
+                <form action="" method="">
+
+			 	<%= text_field_tag :person, params[:person], placeholder: ' Username' , :style => "text-align:left !important; border-color:#E7A316" %>
+				
+					<%= password_field_tag :password, params[:password], placeholder: ' password'  , :style => "text-align:left !important; border-color:#E7A316"%>
+				<br> <br>
+                    <button class="btn btn-warning btn-block login" type="submit">  <%= submit_tag and label_tag 'LOGIN'%> </button>
+                </form>
+            </div>
+        </div>
+        
+</div>	
+	</div>
+	<div> <br>
+			
+</div>
+</fieldset>
+<% end %>
+</div></center>

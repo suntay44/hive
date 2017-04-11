@@ -1,0 +1,14 @@
+ <%= render 'shared/header' %>
+ 
+<% if current_user.is_admin == true %><h1>Editing Hive Category</h1>
+
+<%= render 'form', hive_category: @hive_category %>
+
+<%= link_to 'Show', @hive_category %> |
+<%= link_to 'Back', new_hive_category_path %>
+<%else%>
+
+
+  <%= link_to "UNAUTHORIZE ACCESS", hive_informations_path %> <br>
+  
+<%end%>

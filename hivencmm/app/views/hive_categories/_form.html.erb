@@ -1,0 +1,40 @@
+<% if current_user.is_admin == true %><%= form_for(hive_category) do |f| %>
+  <% if hive_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hive_category.errors.count, "error") %> prohibited this hive_category from being saved:</h2>
+
+      <ul>
+      <% hive_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cat_id %>
+    <%= f.number_field :cat_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+	  <%= f.hidden_field :is_active, :value => true%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%else%>
+
+
+  <%= link_to "UNAUTHORIZE ACCESS", hive_informations_path %> <br>
+  
+<%end%>

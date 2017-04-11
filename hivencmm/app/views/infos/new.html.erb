@@ -1,0 +1,11 @@
+<% if current_user.is_admin == true %>
+
+<%= render 'form', hive_information: @hive_information %>
+
+<%= link_to 'Back', infos_path %>
+<%else%>
+
+
+  <%= link_to "UNAUTHORIZE ACCESS", infos_path %> <br>
+  
+<%end%>

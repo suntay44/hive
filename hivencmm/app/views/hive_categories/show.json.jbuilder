@@ -1,0 +1,1 @@
+json.partial! "hive_categories/hive_category", hive_category: @hive_category

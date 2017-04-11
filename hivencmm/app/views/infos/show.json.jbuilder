@@ -1,0 +1,1 @@
+json.partial! "hive_informations/hive_information", hive_information: @hive_information

@@ -1,0 +1,39 @@
+<center><H1>ADVANCE SEARCH</h1> </cente>
+	
+	<%= form_for @advancesearch, html: {class: "pure-form"} do |s| %>
+	
+	<table><tr><tr><td><%= s.label :title %> &nbsp</td><td>	<%= s.label :description %>  &nbsp</td><td><%= s.label :responsible %> &nbsp</td><td><%= s.label :note %> &nbsp</td><td><%= s.label :solution %> &nbsp</td><td>	<%= s.label :category_id %> ID&nbsp</td></tr>
+
+	<td><%= s.text_field :title %> </td>
+	
+	
+
+<td>	<%= s.text_field :description %></td>
+	
+	
+	<br>
+	<td><%= s.text_field :responsible %></td>
+	
+	
+	<br>
+	<td><%= s.text_field :note %></td>
+	
+	
+	<br>
+	<td><%= s.text_field :solution %></td>
+	
+	
+ <br>
+	<td><%= s.select :category_id, options_for_select(@categories), :include_blank => true%> </td>
+	
+	
+	 <br>
+ </tr>
+	
+</table> <br> <br>
+	<center><%= s.submit "SNIPE", class: "pure-button pure-button-primary"%>
+	
+	
+	<%end%>
+	<br>
+	<%= link_to 'Back', hive_informations_path%> </center>

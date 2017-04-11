@@ -1,0 +1,9 @@
+<%= form_tag(comments_url ,:method => :post) do %> 
+ 
+ 
+ <%= hidden_field_tag :info_id, params[:id]%>
+<%= text_area_tag :content, nil, :maxlength => 40, :size => 60%> <br>
+
+<%= submit_tag "COMMENT"%>
+
+<%end%>

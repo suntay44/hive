@@ -1,0 +1,1 @@
+json.array! @hive_categories, partial: 'hive_categories/hive_category', as: :hive_category

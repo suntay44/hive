@@ -1,0 +1,122 @@
+ <%= render 'shared/header' %>
+
+
+	 <div class="container">
+	 	<div class="login-container2" >
+	             <div id="output"></div>
+	             <div class="avatar2"></div>
+	             <div class="form-box" align="justify">
+	                 <form action="" method="">
+
+<% if current_user.is_admin == true %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title</strong> <br>
+  <%= @hive_information.title %>
+</p>
+
+<p>
+  <strong>Description</strong><br>
+  <%= @hive_information.description %>
+</p>
+
+<p>
+  <strong>Responsible</strong><br>
+  <%= @hive_information.responsible %>
+</p>
+
+<p>
+  <strong>Note</strong><br>
+  <%= @hive_information.note %>
+</p>
+
+<p>
+  <strong>Solution</strong><br>
+  <%= @hive_information.solution %>
+</p>
+
+<p>
+  <strong>Category</strong><br>
+  <%= @hive_information.category_id %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_info_path(@hive_information) %> |
+<%= link_to 'Back', request.referer.present? ? request.referer : default_path %>
+
+<br> <br> <br>
+<h4><strong>
+<%= @hive_information.comments.count%> Comments </strong> </h4> <br>
+<% @comment.each do |comment| %>	<div class="login-container3" >
+<p><strong> User </strong><%= comment.person_id%>
+</p>
+<p> Comment<br> <%= comment.content%>
+</p>
+<%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %> <%= time_ago_in_words(comment.created_at) %>
+</div>
+<%end%>
+
+<%else%>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @hive_information.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @hive_information.description %>
+</p>
+
+<p>
+  <strong>Responsible:</strong>
+  <%= @hive_information.responsible %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @hive_information.note %>
+</p>
+
+<p>
+  <strong>Solution:</strong>
+  <%= @hive_information.solution %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @hive_information.category_id %>
+</p>
+
+
+<%= link_to 'Back', request.referer.present? ? request.referer : default_path %>
+
+ <br><br><h4><strong>
+<%= @hive_information.comments.count%> Comments </strong> </h4> <br>
+<% @comment.each do |comment| %>
+
+ 
+
+<p> <strong> User: </strong> <%= comment.person_id%>
+	
+
+</p>
+<p> Comment: <%= comment.content%> 
+</p><%= time_ago_in_words(comment.created_at) %>
+<br> <br>
+<%end%>
+ 
+<%end%>
+                </form><center> <%= render :template => 'comments/new' %></center>
+            </div>
+        </div>
+
+</div>
+	</div>
+
+
+

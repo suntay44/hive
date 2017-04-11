@@ -1,0 +1,46 @@
+	  	  <body>
+
+	  <nav class="navbar navbar-inverse">
+	    <div class="container-fluid">
+	      <div class="navbar-header">
+	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>                        
+	        </button>
+	       <a class="navbar-brand"  >
+			   <img border="0" src="http://testing.komplekscreative.com/bee-downtown/wordpress/wp-content/uploads/2016/09/honeycomb-01-300x300.png" width="20" height="20">
+			   </a>
+	      </div>
+	      <div class="collapse navbar-collapse" id="myNavbar">
+	        <ul class="nav navbar-nav">
+       
+	   	          <li><a href="/infos">Search</a></li>  </ul>
+	  		  	            <ul class="nav navbar-nav"> <%if current_user.is_admin?%>  
+	  		     <li class="dropdown">
+	  		       <a class="dropbtn">Reports</a>
+	  		       <div class="dropdown-content">
+	  		 	 <a href="/infos/active">Active</a>
+	  		 	        <a href="/infos/inactive">In-Active</a>
+     
+    
+	  		       </div>
+	  		    </li>  <%end%> </ul>
+    
+	        <ul class="nav navbar-nav navbar-right">
+	         <li>   <%= link_to "Log-Out", logout_path, method: :delete %></li>
+	        </ul>
+     <ul class="nav navbar-nav navbar-right">
+	  <a class="navbar-brand" href="/">  <li><font color= "#E7A316"><%= current_user.person %> </font>  </li> </ul> </a>
+	      </div>
+	    </div>
+	  </nav>
+
+ 
+
+	  	  <!-- <footer class="container-fluid text-center">
+	  	    <p>Footer Text</p>
+	  	  </footer> -->
+
+	  	  </body>
+	  </font>
