@@ -89,7 +89,7 @@ aresponsible = params[:aresponsible]
       page: params[:page], per_page: 5)
     
   
-    @categories = HiveCategory.uniq.pluck(:cat_id)
+    @categories = HiveCategory.uniq.pluck(:name)
     
     
      end
@@ -110,7 +110,7 @@ aresponsible = params[:aresponsible]
   # GET /hive_informations/new
   def new
     @hive_information = Info.new
-     @categories = HiveCategory.uniq.pluck(:cat_id)
+     @categories = HiveCategory.uniq.pluck(:name)
   end
 
   # GET /hive_informations/1/edit
@@ -118,7 +118,7 @@ aresponsible = params[:aresponsible]
    
     @hive_information = Info.find(params[:id])
   #  @hive_information = Info.all
-     @categories = HiveCategory.uniq.pluck(:cat_id)
+     @categories = HiveCategory.uniq.pluck(:name)
   end
 
   # POST /hive_informations
